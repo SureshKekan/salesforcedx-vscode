@@ -17,8 +17,8 @@ import {
 function loadMessageBundle(config?: Config): Message {
   function resolveFileName(locale: string): string {
     return locale === DEFAULT_LOCALE
-      ? `${BASE_FILE_NAME}.${BASE_FILE_EXTENSION}`
-      : `${BASE_FILE_NAME}.${locale}.${BASE_FILE_EXTENSION}`;
+      ? `${BASE_FILE_NAME}`
+      : `${BASE_FILE_NAME}.${locale}`;
   }
 
   const base = new Message(
@@ -42,5 +42,9 @@ function loadMessageBundle(config?: Config): Message {
 }
 
 export const nls = new Localization(
-  loadMessageBundle(process.env.VSCODE_NLS_CONFIG ? JSON.parse(process.env.VSCODE_NLS_CONFIG!) : undefined)
+  loadMessageBundle(
+    process.env.VSCODE_NLS_CONFIG
+      ? JSON.parse(process.env.VSCODE_NLS_CONFIG!)
+      : undefined
+  )
 );
